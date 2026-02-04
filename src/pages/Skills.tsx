@@ -25,19 +25,30 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="w-full h-screen flex items-center justify-center bg-[#f0f6fb] relative overflow-hidden"
+      className="w-full min-h-screen flex items-center justify-center bg-[#f0f6fb] overflow-hidden"
     >
-      {/* Wrapper (static) */}
-      <div className="relative w-[650px] h-[650px] flex items-center justify-center">
-
-        {/* Center static circle (NEVER ROTATES) */}
-        <div className="absolute w-[220px] h-[220px] rounded-full bg-white shadow-2xl flex items-center justify-center z-30">
-          <h2 className="text-3xl font-serif tracking-widest text-[#2f3a44]">
+      {/* Wrapper */}
+      <div className="relative
+        w-[320px] h-[320px]
+        sm:w-[420px] sm:h-[420px]
+        md:w-[550px] md:h-[550px]
+        lg:w-[650px] lg:h-[650px]
+        flex items-center justify-center"
+      >
+        {/* Center Circle */}
+        <div
+          className="absolute rounded-full bg-white shadow-2xl flex items-center justify-center z-30
+          w-[120px] h-[120px]
+          sm:w-[160px] sm:h-[160px]
+          md:w-[200px] md:h-[200px]"
+        >
+          <h2 className="font-serif tracking-widest text-[#2f3a44]
+            text-lg sm:text-xl md:text-2xl">
             SKILLS
           </h2>
         </div>
 
-        {/* Rotating orbit layer ONLY for icons */}
+        {/* Orbit */}
         <div
           className={`absolute inset-0 flex items-center justify-center rounded-full ${
             hovered ? "orbit-paused" : "orbit-rotating"
@@ -45,7 +56,16 @@ const Skills = () => {
         >
           {skills.map((skill, index) => {
             const angle = (360 / skills.length) * index;
-            const radius = 300;
+
+            // Responsive radius
+            const radius =
+              typeof window !== "undefined" && window.innerWidth < 640
+                ? 130
+                : window.innerWidth < 768
+                ? 170
+                : window.innerWidth < 1024
+                ? 230
+                : 300;
 
             return (
               <div
@@ -62,18 +82,25 @@ const Skills = () => {
                 onMouseLeave={() => setHovered(null)}
               >
                 <div className="counter-rotate flex flex-col items-center">
-                <div
-                  className={`w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center text-3xl text-[#5b7fa6] transition-transform duration-300 ${
-                    hovered === skill.name ? "scale-125 z-40" : "scale-100"
-                  }`}
-                >
-                  <skill.icon />
-                </div>
+                  <div
+                    className={`rounded-full bg-white shadow-xl flex items-center justify-center
+                    text-[#5b7fa6] transition-transform duration-300
+                    w-10 h-10 text-xl
+                    sm:w-12 sm:h-12 sm:text-2xl
+                    md:w-14 md:h-14 md:text-3xl
+                    ${
+                      hovered === skill.name
+                        ? "scale-125 z-40"
+                        : "scale-100"
+                    }`}
+                  >
+                    <skill.icon />
+                  </div>
 
-                <p className="mt-2 text-center text-sm font-medium text-[#2f3a44]">
-                  {skill.name}
-                </p>
-              </div>
+                  <p className="mt-1 text-xs sm:text-sm font-medium text-[#2f3a44]">
+                    {skill.name}
+                  </p>
+                </div>
               </div>
             );
           })}
@@ -91,12 +118,8 @@ const Skills = () => {
         }
 
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
 
         .counter-rotate {
@@ -108,16 +131,8 @@ const Skills = () => {
         }
 
         @keyframes spinReverse {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
-        }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
         }
       `}</style>
     </section>
