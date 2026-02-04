@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { cubicBezier, motion } from "framer-motion";
 
 const projects = [
   {
@@ -47,17 +47,16 @@ const cardVariants = {
   show: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: cubicBezier(0.4, 0, 0.2, 1) },
   },
 };
 
 const Project = () => {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <section className="relative w-full bg-[#f0f6fb] py-40">
       <div className="max-w-[1400px] mx-auto px-10">
-
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
