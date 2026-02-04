@@ -69,7 +69,7 @@ const Hero = () => {
 
           <div className="flex gap-12">
             <motion.a
-              href="/SoumyaJoshiResume.pdf"
+              href="/ResumeSoumyaJoshi.pdf"
               download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
