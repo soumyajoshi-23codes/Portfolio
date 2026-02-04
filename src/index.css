@@ -1,0 +1,158 @@
+@import "tailwindcss";
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f6fb;   /* SAME AS NAVBAR + HERO */
+  overflow-x: hidden;
+}
+.penguin-container {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  width: 180px;
+  height: 260px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.penguin {
+  position: relative;
+  width: 160px;
+  height: 240px;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Head */
+.head {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 100px;
+  height: 90px;
+  background: #2b2b2b;
+  border-radius: 50%;
+}
+
+.eye {
+  position: absolute;
+  top: 28px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.eye.left { left: 20px; }
+.eye.right { right: 20px; }
+
+.pupil {
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  transition: transform 0.1s linear;
+}
+
+/* Beak */
+.beak {
+  position: absolute;
+  bottom: 12px;
+  left: 40px;
+  width: 20px;
+  height: 14px;
+  background: orange;
+  border-radius: 0 0 10px 10px;
+}
+
+.beak.smile {
+  height: 8px;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Body */
+.body {
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  width: 140px;
+  height: 140px;
+  background: #2b2b2b;
+  border-radius: 70px 70px 60px 60px;
+}
+
+.belly {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 90px;
+  height: 100px;
+  background: #f4f4f4;
+  border-radius: 50%;
+}
+
+/* Wings */
+.wing {
+  position: absolute;
+  top: 40px;
+  width: 30px;
+  height: 90px;
+  background: #222;
+  border-radius: 30px;
+  transform-origin: top center;
+}
+
+.wing.left { left: -20px; }
+.wing.right { right: -20px; }
+
+.wave {
+  animation: wave 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(25deg); }
+}
+
+/* Feet */
+.feet {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.foot {
+  width: 36px;
+  height: 12px;
+  background: orange;
+  border-radius: 6px;
+}
+
+/* Speech bubble */
+.speech {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  background: white;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: pop 0.3s ease-out;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
